@@ -12,34 +12,104 @@ Pizza.prototype.combineToppings = function(sauce, cheese, meat1, meat2) {
   this.toppings.push(sauce, cheese, meat1, meat2)
 }
 
-Pizza.prototype.getPrice = function() {
+Pizza.prototype.getPrice = function(errormsg) {
     this.tempPrice = 0
-    for (i=0; i>=this.toppings.length; i++)
     // sauces
-    if (this.toppings[i].toString().includes('Choose a sauce')) {
+    if (this.toppings[0] == 'Choose a sauce') {
       alert(errormsg)
-    } else if (this.toppings[i].toString().includes('Tomato')) {
-      alert(this.tempPrice += 3)
+      return errormsg
+    } else if (this.toppings[0] == 'Tomato') {
+      this.tempPrice += 3
       this.totalPrice += this.tempPrice
-    } else if (this.toppings[i].toString().includes('White Garlic')) {
+    } else if (this.toppings[0] == 'White Garlic') {
       this.tempPrice += 3.25
       this.totalPrice += this.tempPrice
-    } else if (this.toppings[i].toString().includes('None')) {
+    } else if (this.toppings[0] == 'None') {
       this.tempPrice += 0
       this.totalPrice += this.tempPrice
     } else {
       return errormsg
     }
-    console.log(this.totalPrice)
+
     // cheese
+    if (this.toppings[1] == 'Choose a cheese') {
+      alert(errormsg)
+      return errormsg
+    } else if (this.toppings[1] == 'Cheddar') {
+      this.tempPrice += 3
+      this.totalPrice += this.tempPrice
+    } else if (this.toppings[1] == 'Mozzarella') {
+      this.tempPrice += 3.25
+      this.totalPrice += this.tempPrice
+    } else if (this.toppings[1] == 'None') {
+      this.tempPrice += 0
+      this.totalPrice += this.tempPrice
+    } else {
+      return errormsg
+    }
+
+    // meat1
+    if (this.toppings[2] == 'Primary Meat') {
+      alert(errormsg)
+      return errormsg
+    } else if (this.toppings[2] == 'Sausage') {
+      this.tempPrice += 3
+      this.totalPrice += this.tempPrice
+    } else if (this.toppings[2] == 'Bacon') {
+      this.tempPrice += 3.25
+      this.totalPrice += this.tempPrice
+    } else if (this.toppings[2] == 'None') {
+      this.tempPrice += 0
+      this.totalPrice += this.tempPrice
+    } else {
+      return errormsg
+    }
+
+    // meat2
+    if (this.toppings[3] == 'Secondary Meat') {
+      alert(errormsg)
+      return errormsg
+    } else if (this.toppings[3] == 'Ham') {
+      this.tempPrice += 3
+      this.totalPrice += this.tempPrice
+    } else if (this.toppings[3] == 'Chicken') {
+      this.tempPrice += 3.25
+      this.totalPrice += this.tempPrice
+    } else if (this.toppings[3] == 'None') {
+      this.tempPrice += 0
+      this.totalPrice += this.tempPrice
+    } else {
+      return errormsg
+    }
+    return this.totalPrice
 }
 
+Pizza.prototype.reset = function() {
+  this.forWho = ''
+  this.toppings = []
+  this.size = ''
+  this.tempPrice = 0
+  this.totalPrice = 0
+}
+
+Pizza.prototype.sizePrice = function() {
+  if (this.size == 'Small') {
+    this.tempPrice += 3
+    this.totalPrice += this.tempPrice
+  } else if (this.size == 'Medium') {
+    this.tempPrice += 5
+    this.totalPrice += this.tempPrice
+  } else if (this.size == 'Large') {
+    this.tempPrice += 8
+    this.totalPrice += this.tempPrice
+  }
+  return this.totalPrice
+}
 // user
 
 $(document).ready(function() {
 
   var newPizza = new Pizza;
-  var errormsg = 'Please fill out entire order'
 
   $('#pizzaOrder').submit(function(event) {
     event.preventDefault();
@@ -53,7 +123,11 @@ $(document).ready(function() {
 
     newPizza.combineToppings(sauce, cheese, meat1, meat2);
 
-    alert(newPizza.getPrice());
+    newPizza.sizePrice();
+    newPizza.getPrice(errormsg);
 
+    alert('Your total is $' + newPizza.totalPrice);
+
+    newPizza.reset();
   });
 });
