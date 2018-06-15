@@ -1,6 +1,6 @@
 // business
 
-function Pizza() {
+function Pizza(name, toppings, size) {
   this.forWho
   this.toppings = []
   this.size
@@ -8,47 +8,52 @@ function Pizza() {
   this.totalPrice = 0
 }
 
-
-Pizza.prototype.addToppings = function(pizzaToppings) {
-  for (i=0; i<=pizzaToppings.length; i++) {
-    var pizzaString = pizzaToppings[i].toString()
-    if (pizzaString.includes('Cheddar Cheese')) {
-      this.tempPrice += .5
-      this.totalPrice += this.tempPrice
-      this.tempPrice = 0
-    } if (pizzaString.includes('Tomatoes')) {
-      this.tempPrice += 1.25
-      this.totalPrice += this.tempPrice
-      this.tempPrice = 0
-    } if (pizzaString.includes('Jalapenos')) {
-      this.tempPrice += .75
-      this.totalPrice += this.tempPrice
-      this.tempPrice = 0
-    } if (pizzaString.includes('Olives')) {
-      this.tempPrice += 3.00
-      this.totalPrice += this.tempPrice
-      this.tempPrice = 0
-    } if (pizzaString.includes('Red Sauce')) {
-      this.tempPrice += 99.00
-      this.totalPrice += this.tempPrice
-      this.tempPrice = 0
-    }
-  }
+Pizza.prototype.combineToppings = function(sauce, cheese, meat1, meat2) {
+  this.toppings.push(sauce, cheese, meat1, meat2)
 }
-// user
 
+Pizza.prototype.getPrice = function() {
+    this.tempPrice = 0
+    for (i=0; i>=this.toppings.length; i++)
+    // sauces
+    if (this.toppings[i].toString().includes('Choose a sauce')) {
+      alert(errormsg)
+    } else if (this.toppings[i].toString().includes('Tomato')) {
+      alert(this.tempPrice += 3)
+      this.totalPrice += this.tempPrice
+    } else if (this.toppings[i].toString().includes('White Garlic')) {
+      this.tempPrice += 3.25
+      this.totalPrice += this.tempPrice
+    } else if (this.toppings[i].toString().includes('None')) {
+      this.tempPrice += 0
+      this.totalPrice += this.tempPrice
+    } else {
+      return errormsg
+    }
+    console.log(this.totalPrice)
+    // cheese
+}
+
+// user
 
 $(document).ready(function() {
 
   var newPizza = new Pizza;
+  var errormsg = 'Please fill out entire order'
 
   $('#pizzaOrder').submit(function(event) {
     event.preventDefault();
-    newPizza.forWho = $('input#name').val();
-    newPizza.size = $('input#pizzaSize').val();
-    newPizza.toppings =
+    newPizza.forWho = $('#name').val();
+    newPizza.size = $('#pizzaSize').val();
+    var sauce = $('#pizzaSauce').val();
+    var cheese = $('#pizzaCheese').val();
+    var meat1 = $('#pizzaMeat1').val();
+    var meat2 = $('#pizzaMeat2').val();
+    var errormsg = 'Please fill out entire order'
 
+    newPizza.combineToppings(sauce, cheese, meat1, meat2);
 
+    alert(newPizza.getPrice());
 
   });
 });
