@@ -2,3 +2,10 @@ body {
   font-family: verdana;
   background-color: grey;
 }
+#header {
+  text-align: center;
+}
+
+#results {
+  display: none;
+}

@@ -135,11 +135,18 @@ $(document).ready(function() {
     newPizza.combineToppings(sauce, cheese, meat1, meat2);
     newPizza.sizePrice(errorsize);
     newPizza.getPrice(errormsg);
+    $('#orderForm').hide();
+    $('#results').show();
 
-    alert(newPizza.forWho + ', your total is $' + newPizza.totalPrice);
-
+    $('#finalorder').text(newPizza.forWho + ', your total is $' + newPizza.totalPrice);
+    $('#finalorder').text('You ordered a ' + newPizza.size + ' pizza, with ' + newPizza.toppings + ', for a total of: $' + newPizza.totalPrice + '. Enjoy your pizza!');
     newPizza.reset();
     };
-
   });
+
+  // $('#refreshbutton').click(function(event) {
+  //   event.preventDefault();
+  //   location.reload(forceGet);
+  // });
+
 });
