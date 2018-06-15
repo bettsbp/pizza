@@ -1,7 +1,7 @@
 // business
 
 function Pizza() {
-  this.name
+  this.forWho
   this.toppings = []
   this.size
   this.tempPrice = 0
@@ -21,7 +21,15 @@ Pizza.prototype.addToppings = function(pizzaToppings) {
       this.totalPrice += this.tempPrice
       this.tempPrice = 0
     } if (pizzaString.includes('Jalapenos')) {
-      this.tempPrice += 30.00
+      this.tempPrice += .75
+      this.totalPrice += this.tempPrice
+      this.tempPrice = 0
+    } if (pizzaString.includes('Olives')) {
+      this.tempPrice += 3.00
+      this.totalPrice += this.tempPrice
+      this.tempPrice = 0
+    } if (pizzaString.includes('Red Sauce')) {
+      this.tempPrice += 99.00
       this.totalPrice += this.tempPrice
       this.tempPrice = 0
     }
@@ -35,8 +43,12 @@ $(document).ready(function() {
   var newPizza = new Pizza;
 
   $('#pizzaOrder').submit(function(event) {
-    var pizzaSize = $('input#pizzaSize').val();
-    var pizzaToppings = [];
+    event.preventDefault();
+    newPizza.forWho = $('input#name').val();
+    newPizza.size = $('input#pizzaSize').val();
+    newPizza.toppings =
+
+
 
   });
 });
