@@ -92,19 +92,23 @@ Pizza.prototype.reset = function() {
   this.totalPrice = 0
 }
 
-Pizza.prototype.sizePrice = function() {
-  if (this.size == 'Small') {
+Pizza.prototype.sizePrice = function(errorsize) {
+  if (this.size == 'Choose a size') {
+    alert(errorsize)
+    return errorsize
+  } else if (this.size == 'Small') {
     this.tempPrice += 3
     this.totalPrice += this.tempPrice
   } else if (this.size == 'Medium') {
     this.tempPrice += 5
     this.totalPrice += this.tempPrice
-  } else if (this.size == 'Large') {
+  } else {
     this.tempPrice += 8
     this.totalPrice += this.tempPrice
   }
   return this.totalPrice
 }
+
 // user
 
 $(document).ready(function() {
@@ -119,15 +123,23 @@ $(document).ready(function() {
     var cheese = $('#pizzaCheese').val();
     var meat1 = $('#pizzaMeat1').val();
     var meat2 = $('#pizzaMeat2').val();
-    var errormsg = 'Please fill out entire order'
+    var errormsg = 'Please fill out entire order';
+    var errorname = 'Please fill out your name';
+    var errorsize = 'Please choose a size for your pizza';
+
+    if (newPizza.forWho == '') {
+      alert('Please enter your name');
+      return;
+    } else {
 
     newPizza.combineToppings(sauce, cheese, meat1, meat2);
-
-    newPizza.sizePrice();
+    newPizza.sizePrice(errorsize);
     newPizza.getPrice(errormsg);
 
-    alert('Your total is $' + newPizza.totalPrice);
+    alert(newPizza.forWho + ', your total is $' + newPizza.totalPrice);
 
     newPizza.reset();
+    };
+
   });
 });
