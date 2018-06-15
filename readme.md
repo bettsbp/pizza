@@ -16,9 +16,9 @@ _A simple program that takes an order of pizza from a user and returns a price d
 
 |Behavior  |     Input     | Output|
 |:----------:|:-------------:|:------:|
-| Name will be displayed | Brandon | Brandon, your order is coming soon! |
-| Size will change total price | Large | +3.75 to total price |
-| Toppings will add to total price | Tomatoes, Red Sauce | +1.25 and +99.00 to total price |
+| Name will be displayed | X | X, your order is coming soon! |
+| Size will change total price | Large | +X to total price |
+| Toppings will add to total price | Tomatoes, Red Sauce | +X and +X to total price |
 
 ## Setup/Installation Requirements
 
