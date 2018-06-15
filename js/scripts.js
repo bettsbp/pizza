@@ -34,7 +34,7 @@ $(document).ready(function() {
 
   var newPizza = new Pizza;
 
-  $('#pizzaform').submit(function(event) {
+  $('#pizzaOrder').submit(function(event) {
     var pizzaSize = $('input#pizzaSize').val();
     var pizzaToppings = [];
 
